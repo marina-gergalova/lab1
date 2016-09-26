@@ -3,10 +3,12 @@ package lab1;
 /**
  * Created by developer-kc3e on 26.9.16.
  */
-public abstract class Food implements Consumable {
+public abstract class Food implements Consumable, Nutritious {
     String name = null;
+    String calories = null;
     public Food(String name) {
         this.name = name;
+        this.calories = calories;
     }
     public boolean equals(Object arg0) {
         if (!(arg0 instanceof Food)) return false;
@@ -22,6 +24,10 @@ public abstract class Food implements Consumable {
     }
     public void setName(String name) {
         this.name = name;
+    }
+    public void nutritious(String calories) {
+        System.out.println(name + " имеет " + calories+ " ккал");
+
     }
 // Реализация метода consume() удалена из базового класса
 }

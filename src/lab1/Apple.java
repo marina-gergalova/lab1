@@ -46,4 +46,10 @@ public class Apple extends Food {
     public String toString() {
         return super.toString() + " размера '" + size.toUpperCase() + "'";
     }
+
+
+    @Override
+    public void nutritious() {
+        
+    }
 }
