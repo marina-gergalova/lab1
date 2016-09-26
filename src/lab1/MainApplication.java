@@ -13,31 +13,36 @@ public class MainApplication {
 // Анализ аргументов командной строки и создание для них
 // экземпляров соответствующих классов для завтрака
         int itemsSoFar = 0;
+        int sumCol = 0;
+        boolean ex = false;
         for (String arg : args) {
             String[] parts = arg.split("/");
             if (parts[0].equals("Cheese")) {
 // У сыра дополнительных параметров нет
-                breakfast[itemsSoFar] = new Cheese();
-                breakfast[itemsSoFar].nutritious(parts[1]);
+                breakfast[itemsSoFar] = new Cheese(Integer.valueOf(parts[1]));
+                sumCol += breakfast[itemsSoFar].nutritious();
+
             } else if (parts[0].equals("Apple")) {
 // У яблока – 1 параметр, который находится в parts[1]
-                breakfast[itemsSoFar] = new Apple(parts[2]);
-                breakfast[itemsSoFar].nutritious(parts[1]);
+                breakfast[itemsSoFar] = new Apple(Integer.valueOf(parts[1]), parts[2]);
+                sumCol += breakfast[itemsSoFar].nutritious();
+
+
+            } else if (parts[0].equals("-calories")) {
+                ex = true;
             }
-// ... Продолжается анализ других продуктов для завтрака
+
+
             itemsSoFar++;
         }
-// Перебор всех элементов массива
         for (Food item : breakfast)
             if (item != null)
-// Если элемент не null – употребить продукт
                 item.consume();
             else
-// Если дошли до элемента null – значит достигли конца
-// списка продуктов, ведь 20 элементов в массиве было
-// выделено с запасом, и они могут быть не
-// использованы все
                 break;
+        if (ex) {
+            System.out.println("Общая калорийность завтрака составляет " + sumCol + " ккал");
+        }
         System.out.println("Всего хорошего!");
     }
 }

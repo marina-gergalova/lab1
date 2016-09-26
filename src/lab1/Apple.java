@@ -7,11 +7,12 @@ public class Apple extends Food {
     // Новое внутреннее поле данных РАЗМЕР
     private String size;
 
-    public Apple(String size) {
+    public Apple(int calories, String size) {
 // Вызвать конструктор предка, передав ему имя класса
-        super("Яблоко");
+        super("Яблоко", calories);
 // Инициализировать размер яблока
         this.size = size;
+
     }
 
     // Переопределить способ употребления яблока
@@ -49,7 +50,7 @@ public class Apple extends Food {
 
 
     @Override
-    public void nutritious() {
-        
+    public int nutritious() {
+        return super.nutritious()*2;
     }
 }
